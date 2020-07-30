@@ -13,6 +13,7 @@
     "next": "9.5.1",
     "next-plugin-preact": "^2.0.0",
     "preact": "^10.0.5",
+    "sass": "^1.26.10",
     "zustand": "^2.2.3"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@
         "downlevel",
         "hackathon",
         "infoeducatie",
-        "preact"
+        "preact",
+        "zustand"
     ]
 }
