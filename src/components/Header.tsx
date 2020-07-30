@@ -3,6 +3,7 @@ import { Row, Box, Block } from "jsxstyle"
 import { useTheme } from "../stores/theme"
 import { useAuth } from "../stores/user"
 import Link from "next/link"
+import { MdAdd } from "react-icons/md"
 
 // TODO: use an actual logo
 const logoUrl =
@@ -20,7 +21,8 @@ const AuthButtons = () => {
         width: "7rem",
         borderRadius: 5,
         padding: "0.5rem",
-        textAlign: "center"
+        textAlign: "center",
+        cursor: "pointer"
     }
 
     const { currentTheme } = useTheme()
@@ -41,10 +43,45 @@ const AuthButtons = () => {
                     {...commonProps}
                     background={currentTheme.primary}
                     color={currentTheme.onPrimary}
+                    props={{ href: "/register" }}
                 >
                     Sign up
                 </Block>
             </Link>
+        </>
+    )
+}
+
+const ProfileHeaderSection = () => {
+    const auth = useAuth()
+
+    if (auth.user === null) {
+        return null
+    }
+
+    const CreateClassroom = () => (
+        <Link href="/new/classroom">
+            <a>
+                <Box
+                    component={MdAdd}
+                    fontSize="2rem"
+                    marginRight="1rem"
+                    cursor="pointer"
+                    props={{ title: "Create a new classroom" }}
+                />
+            </a>
+        </Link>
+    )
+
+    return (
+        <>
+            {auth.user.isTeacher && <CreateClassroom />}
+            <Box
+                component="img"
+                props={{ src: auth.profilePicture() }}
+                borderRadius="50%"
+                height="100%"
+            />
         </>
     )
 }
@@ -70,7 +107,7 @@ export const Header = ({ height }: Props) => {
                 borderRadius="50%"
                 marginRight="auto"
             />
-            {user === null && <AuthButtons />}
+            {user === null ? <AuthButtons /> : <ProfileHeaderSection />}
         </Row>
     )
 }

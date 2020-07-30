@@ -31,7 +31,12 @@ const Login = () => {
 
     return (
         <LoginPage>
-            <Block component="form" props={{ onSubmit }} height="100%">
+            <Col
+                component="form"
+                justifyContent="space-between"
+                props={{ onSubmit }}
+                height="100%"
+            >
                 <Col height="100%">
                     <Row justifyContent="center">
                         <h1> Welcome back!</h1>
@@ -65,11 +70,9 @@ const Login = () => {
                             required
                         />
                     </Block>
-                    <Row justifyContent="flex-end" flexGrow="1">
-                        <Submit />
-                    </Row>
                 </Col>
-            </Block>
+                <Submit />
+            </Col>
         </LoginPage>
     )
 }

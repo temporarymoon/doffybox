@@ -24,6 +24,7 @@ export const LoginPage = ({ children }: Props) => {
                 background={currentTheme.backgroundRaised}
                 boxShadow="3px 3px 4px 4px rgba(100, 100, 100, 0.5)"
                 minHeight="50vh"
+                height="50vh"
                 minWidth="30vw"
                 margin="5rem"
                 padding="3rem"

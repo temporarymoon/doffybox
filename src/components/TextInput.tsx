@@ -22,8 +22,14 @@ export const TextInput = ({
     onChange
 }: Props) => {
     return (
-        <Col margin="1rem">
-            <label htmlFor={name}> {label}</label>
+        <Col marginBottom="1rem" marginTop="1rem">
+            <Block
+                component="label"
+                props={{ htmlFor: name }}
+                marginBottom="0.5rem"
+            >
+                {label}
+            </Block>
             <Block
                 component="input"
                 padding="0.4rem"

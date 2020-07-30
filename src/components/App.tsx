@@ -3,6 +3,8 @@ import { Header } from "./Header"
 import { Box, Col } from "jsxstyle"
 import { useTheme } from "../stores/theme"
 import { ComponentChildren } from "preact"
+import { useAuth } from "../stores/user"
+import { useEffect } from "preact/compat"
 
 const headerHeight = 50
 
@@ -12,6 +14,14 @@ interface Props {
 
 export const App = ({ children }: Props) => {
     const { currentTheme } = useTheme()
+    const auth = useAuth()
+
+    useEffect(() => {
+        if (auth.user === null && typeof window !== undefined) {
+            console.log("client side")
+            auth.load()
+        }
+    }, [])
 
     return (
         <Col
