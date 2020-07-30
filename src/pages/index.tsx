@@ -1,6 +1,5 @@
 import "preact/compat"
 import { Col, Block, Box, Row, Grid } from "jsxstyle"
-import { Button } from "../components/Button"
 
 export default function Home() {
     return (
