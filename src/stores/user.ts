@@ -12,7 +12,7 @@ export interface AuthStore {
         username: string
         email: string
         password: string
-        isTeacher: string
+        isTeacher: boolean
     }): void
     login(data: { email: string; password: string })
     user: null | User

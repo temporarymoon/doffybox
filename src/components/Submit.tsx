@@ -11,10 +11,9 @@ export const Submit = () => {
             props={{ type: "submit" }}
             background={currentTheme.primary}
             color={currentTheme.onPrimary}
-            padding="0.5rem"
+            padding="0.6rem"
             outline="none"
             border="none"
-            boxShadow="3px 3px 2px 2px rgba(50,50,50,0.3)"
         />
     )
 }
