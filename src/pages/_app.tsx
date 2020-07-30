@@ -7,7 +7,15 @@ interface Props<T> {
 }
 
 const MyApp = <T,>({ Component, pageProps }: Props<T>) => {
-    return <Component {...pageProps} />
+    return (
+        <>
+            <link
+                rel="stylesheet"
+                href="https://unpkg.com/blocks.css/dist/blocks.min.css"
+            />
+            <Component {...pageProps} />
+        </>
+    )
 }
 
 export default MyApp

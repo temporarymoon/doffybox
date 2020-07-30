@@ -1,21 +1,53 @@
-import Head from "next/head"
 import "preact/compat"
-import { Col, Block } from "jsxstyle"
-import { App } from "../components/App"
+import { Col, Block, Box, Row, Grid } from "jsxstyle"
+import { Button } from "../components/Button"
 
 export default function Home() {
     return (
-        <App>
-            <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Col>
-                <Block color="red">1</Block>
-                <Block>2</Block>
-                <Block>3</Block>
+        <Col
+            height="100vh"
+            width="100%"
+            background="#42BFDF"
+            alignItems="center"
+            justifyContent="center"
+        >
+            <Col
+                justifyContent="center"
+                alignItems="center"
+                class="block wrap"
+                // These 2 overwrite the theme
+                cursor="default !important"
+                padding="2rem !important"
+            >
+                <Block component="h1" fontSize="3rem">
+                    Join classroom
+                </Block>
+                <Col>
+                    <Block
+                        padding="0.7rem"
+                        fontSize="1.5rem"
+                        component="input"
+                        class="block wrap"
+                        width="100%"
+                        props={{
+                            name: "Room id",
+                            placeholder: "000000",
+                            type: "number",
+                            maxlength: 10
+                        }}
+                    ></Block>
+                    <Box
+                        component="button"
+                        class="block accent"
+                        marginTop="2rem !important"
+                        fontSize="2rem"
+                        width="100%"
+                    >
+                        Join
+                    </Box>
+                </Col>
             </Col>
-            hello world
-        </App>
+            <Col class="block">Or make your own</Col>
+        </Col>
     )
 }
