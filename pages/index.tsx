@@ -1,4 +1,5 @@
 import Head from "next/head";
+import "preact/compat";
 
 export default function Home() {
   return (
