@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { baseUrl, defaultPfp } from "../constants"
+import { baseUrl, defaultPfp, commonHeaders } from "../constants"
 import { url } from "gravatar"
 
 export interface User {
@@ -15,7 +15,7 @@ export interface AuthStore {
         email: string
         password: string
         isTeacher: boolean
-    }): void
+    }): Promise<void>
     load(): Promise<void>
     login(data: { email: string; password: string })
     createClassroom(name: string): Promise<void>
@@ -29,8 +29,14 @@ export interface AuthStore {
 }
 
 export const [useAuth, auth] = create<AuthStore>(set => ({
-    register: ({ username, email, password }) => {
-        console.log({ username, email, password })
+    register: async data => {
+        const res = await fetch(`${baseUrl}/users`, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: commonHeaders
+        })
+
+        const json = await res.json()
     },
     login: ({ email, password }) => {
         console.log({ email, password })
