@@ -8,16 +8,21 @@ export interface User {
 }
 
 export interface AuthStore {
-    register(username: string, email: string, password: string): void
-    login(email: string, password: string)
+    register(data: {
+        username: string
+        email: string
+        password: string
+        isTeacher: string
+    }): void
+    login(data: { email: string; password: string })
     user: null | User
 }
 
 export const [useAuth] = create<AuthStore>(set => ({
-    register: (username, email, password) => {
+    register: ({ username, email, password }) => {
         console.log({ username, email, password })
     },
-    login: (email, password) => {
+    login: ({ email, password }) => {
         console.log({ email, password })
     },
     user: null

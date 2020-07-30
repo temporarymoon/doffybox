@@ -27,6 +27,12 @@ export const LoginPage = ({ children }: Props) => {
                 minWidth="30vw"
                 margin="5rem"
                 padding="3rem"
+                mediaQueries={{
+                    sm: "screen and (max-width: 640px)"
+                }}
+                smMarginLeft="auto"
+                smMarginRight="auto"
+                smWidth="100%"
             >
                 {children}
             </Block>

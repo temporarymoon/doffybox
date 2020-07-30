@@ -1,6 +1,8 @@
 import "preact/compat"
 import { LoginPage } from "../components/LoginPage"
 
-export default () => {
+const Register = () => {
     return <LoginPage>Register</LoginPage>
 }
+
+export default Register
