@@ -2220,7 +2220,7 @@ csso@^4.0.2:
   dependencies:
     css-tree "1.0.0-alpha.39"
 
-csstype@^2.2.0:
+csstype@^2.2.0, csstype@^2.6.7:
   version "2.6.13"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.13.tgz#a6893015b90e84dd6e85d0e3b442a1e84f2dbe0f"
   integrity sha512-ul26pfSQTZW8dcOnD2iiJssfXw0gdNVX9IJDH/X3K5DGPfj+fUYe3kB+swUY6BF3oZDxaID3AJt+9/ojSAE05A==
@@ -3258,6 +3258,20 @@ json5@^2.1.0, json5@^2.1.2:
   integrity sha512-KXPvOm8K9IJKFM0bmdn8QXh7udDh1g/giieX0NLCaMnb4hEiVFqnop2ImTXCc5e0/oHz3LTqmHGtExn5hfMkOA==
   dependencies:
     minimist "^1.2.5"
+
+jsxstyle-utils@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/jsxstyle-utils/-/jsxstyle-utils-2.4.0.tgz#687383fc73449fb9ad57a9a0b4d9e73375b608ac"
+  integrity sha512-o49qKOW0wqjTA/52tiTl/7wMw9Hz6KG9xiQQ7flYJTxwPr8Ojdryao88VxTpFPBK/NeCvLmQhDOgZpLH+oyjww==
+  dependencies:
+    csstype "^2.6.7"
+
+jsxstyle@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/jsxstyle/-/jsxstyle-2.4.0.tgz#4ee6d6d60af41904964bf9bd082372549abdc769"
+  integrity sha512-dqaig2s8d11+R5OQ/UxW2N3nbWyBE8mSox5ucCYgCHHNMPLyTFoPjEFPHT31dAGDDBd/BhQuEGoLPF9mWYYY8g==
+  dependencies:
+    jsxstyle-utils "^2.4.0"
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
