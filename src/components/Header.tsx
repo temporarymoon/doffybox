@@ -16,14 +16,11 @@ const AuthButtons = () => {
     const commonProps = {
         component: "a",
         marginLeft: "1rem",
-        outline: "none",
         border: "none",
         width: "7rem",
         borderRadius: 5,
         padding: "0.5rem",
-        textAlign: "center",
-        boxSizing: "border-box",
-        cursor: "pointer"
+        textAlign: "center"
     }
 
     const { currentTheme } = useTheme()

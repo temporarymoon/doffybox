@@ -1,5 +1,6 @@
 import "preact/compat"
+import { LoginPage } from "../components/LoginPage"
 
 export default () => {
-    return <p>Login</p>
+    return <LoginPage>Login</LoginPage>
 }
