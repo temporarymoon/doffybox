@@ -5,6 +5,7 @@ import { useAuth } from "../../stores/user"
 import { useRouter } from "next/router"
 import { useState } from "preact/hooks"
 import { Submit } from "../../components/Submit"
+import Login from "../login"
 
 const NewClassroom = () => {
     const auth = useAuth()
@@ -12,11 +13,11 @@ const NewClassroom = () => {
     const [name, setName] = useState(`${auth.user?.username ?? "ERROR"}s room`)
 
     if (auth.user === null) {
-        return router.push("/login")
+        return <Login />
     }
 
     if (!auth.user.isTeacher) {
-        return router.push("/home")
+        return null
     }
 
     const onSubmit = (e: InputEvent) => {

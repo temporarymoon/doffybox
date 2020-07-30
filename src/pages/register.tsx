@@ -19,7 +19,6 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [isTeacher, setTeacher] = useState(false)
-    const { currentTheme } = useTheme()
 
     const auth = useAuth()
 

@@ -21,6 +21,11 @@ export interface AuthStore {
     createClassroom(name: string): Promise<void>
     profilePicture(): string
     user: null | User
+    classroom: {
+        id: string
+        name: string
+        owned: boolean
+    } | null
 }
 
 export const [useAuth, auth] = create<AuthStore>(set => ({
@@ -31,27 +36,21 @@ export const [useAuth, auth] = create<AuthStore>(set => ({
         console.log({ email, password })
     },
     load: async () => {
-        const res = await fetch(`${baseUrl}/users/`)
+        try {
+            const res = await fetch(`${baseUrl}/users/`)
 
-        if (res.status === 401) {
+            const json = await res.json()
+
+            if (res.status > 299) {
+                throw new Error("this should be catched")
+            }
+
+            set({ user: json })
+        } catch {
             set({ user: null })
-            return
         }
-
-        const json = await res.json()
-
-        console.log({ json })
-
-        set({ user: json })
-
-        auth.getState().load()
     },
-    user: {
-        discriminator: "0000",
-        username: "yugiohxlight",
-        email: "rafaeladriel11@gmail.com",
-        isTeacher: true
-    },
+    user: null,
     profilePicture: () => {
         const user = auth.getState().user
 
@@ -65,5 +64,13 @@ export const [useAuth, auth] = create<AuthStore>(set => ({
     },
     createClassroom: async (name: string) => {
         console.log(`Created ${name}`)
-    }
+        set({
+            classroom: {
+                id: "myid",
+                name,
+                owned: true
+            }
+        })
+    },
+    classroom: null
 }))
