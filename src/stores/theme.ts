@@ -2,17 +2,20 @@ import { create } from "zustand"
 import { produce } from "immer"
 
 interface Theme {
+    backgroundRaised: string
     background: string
     primary: string
 }
 
 const lightTheme: Theme = {
-    background: "white",
+    background: "#eeeeee",
+    backgroundRaised: "white",
     primary: "#6a9fb5"
 }
 
 const darkTheme: Theme = {
-    background: "dark",
+    backgroundRaised: "#555555",
+    background: "black",
     primary: "#6a9fb5"
 }
 

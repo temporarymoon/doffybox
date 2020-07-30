@@ -1,33 +1,24 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "Node",
-    "module": "ESNext",
-    "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext.Array",
-      "ESNext"
-    ],
-    "downlevelIteration": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "esModuleInterop": true,
-    "importHelpers": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */,
-    "jsxFactory": "h"
-  },
-  "include": [
-    "pages"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "module": "ESNext",
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext.Array", "ESNext"],
+        "downlevelIteration": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": true,
+        "esModuleInterop": true,
+        "importHelpers": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "jsxFactory": "h"
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
 }
