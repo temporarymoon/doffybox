@@ -2,11 +2,12 @@ import "preact/compat"
 import { Header } from "./Header"
 import { Box, Col } from "jsxstyle"
 import { useTheme } from "../stores/theme"
+import { ComponentChildren } from "preact"
 
 const headerHeight = 50
 
 interface Props {
-    children: JSX.Element
+    children: ComponentChildren
 }
 
 export const App = ({ children }: Props) => {

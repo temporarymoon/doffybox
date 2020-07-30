@@ -8,9 +8,5 @@ interface Props<T> {
 }
 
 export default <T,>({ Component, pageProps }: Props<T>) => {
-    return (
-        <App>
-            <Component {...pageProps} />
-        </App>
-    )
+    return <Component {...pageProps} />
 }

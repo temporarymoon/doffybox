@@ -5,18 +5,21 @@ interface Theme {
     backgroundRaised: string
     background: string
     primary: string
+    onPrimary: string
 }
 
 const lightTheme: Theme = {
     background: "#eeeeee",
     backgroundRaised: "white",
-    primary: "#6a9fb5"
+    primary: "#6a9fb5",
+    onPrimary: "white"
 }
 
 const darkTheme: Theme = {
     backgroundRaised: "#555555",
     background: "black",
-    primary: "#6a9fb5"
+    primary: "#6a9fb5",
+    onPrimary: "white"
 }
 
 export type ThemeName = "light" | "dark"

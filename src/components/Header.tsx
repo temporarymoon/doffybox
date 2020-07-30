@@ -1,6 +1,8 @@
 import "preact/compat"
-import { Row, Box } from "jsxstyle"
+import { Row, Box, Block } from "jsxstyle"
 import { useTheme } from "../stores/theme"
+import { useAuth } from "../stores/user"
+import Link from "next/link"
 
 // TODO: use an actual logo
 const logoUrl =
@@ -10,8 +12,49 @@ interface Props {
     height: number
 }
 
+const AuthButtons = () => {
+    const commonProps = {
+        component: "a",
+        marginLeft: "1rem",
+        outline: "none",
+        border: "none",
+        width: "7rem",
+        borderRadius: 5,
+        padding: "0.5rem",
+        textAlign: "center",
+        boxSizing: "border-box",
+        cursor: "pointer"
+    }
+
+    const { currentTheme } = useTheme()
+
+    return (
+        <>
+            <Link href="/login" passhref>
+                <Block
+                    {...commonProps}
+                    border={`3px solid ${currentTheme.primary}`}
+                    props={{ href: "/login" }}
+                >
+                    Log in
+                </Block>
+            </Link>
+            <Link href="/register" passhref>
+                <Block
+                    {...commonProps}
+                    background={currentTheme.primary}
+                    color={currentTheme.onPrimary}
+                >
+                    Sign up
+                </Block>
+            </Link>
+        </>
+    )
+}
+
 export const Header = ({ height }: Props) => {
     const theme = useTheme(t => t.currentTheme)
+    const { user } = useAuth()
 
     return (
         <Row
@@ -28,7 +71,9 @@ export const Header = ({ height }: Props) => {
                 props={{ src: logoUrl }}
                 height="100%"
                 borderRadius="50%"
+                marginRight="auto"
             />
+            {user === null && <AuthButtons />}
         </Row>
     )
 }
