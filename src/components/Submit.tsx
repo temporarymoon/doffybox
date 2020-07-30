@@ -12,6 +12,7 @@ export const Submit = () => {
             background={currentTheme.primary}
             color={currentTheme.onPrimary}
             padding="0.6rem"
+            marginTop="1rem"
             outline="none"
             border="none"
         />
