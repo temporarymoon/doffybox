@@ -4,9 +4,9 @@
     "private": true,
     "scripts": {
         "postinstall": "link-module-alias",
-        "dev": "next-preact dev",
-        "build": "next-preact build",
-        "start": "next-preact start"
+        "dev": "yarn next dev",
+        "build": "yarn next build",
+        "start": "yarn next start -p $PORT"
     },
     "dependencies": {
         "gravatar": "^1.8.1",
