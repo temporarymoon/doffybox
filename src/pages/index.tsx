@@ -4,6 +4,8 @@ import { useState, useCallback } from "preact/hooks"
 import { WsClient } from "../hooks/useWebsocket"
 import { WSOngoingActions } from "../types/Action"
 import Link from "next/link"
+import { bg } from "../constants"
+import { useClassroom } from "../stores/classroom"
 
 const mediaQueries = {
     lg: "screen and (max-width: 1120px)",
@@ -17,7 +19,7 @@ interface Props {
 export default function Home({ ws }: Props) {
     const [code, setCode] = useState("")
     const [name, setName] = useState("")
-    const [username, setUsername] = useState("")
+    const classroom = useClassroom()
 
     const createClassroom = useCallback(() => {
         if (!ws) return
@@ -33,9 +35,9 @@ export default function Home({ ws }: Props) {
 
         ws.send({
             type: "joinClassroom",
-            data: { code, username }
+            data: { code, username: classroom.username }
         })
-    }, [code, username, ws])
+    }, [code, classroom.username, ws])
 
     return (
         <Row
@@ -43,7 +45,7 @@ export default function Home({ ws }: Props) {
             lgFlexDirection="column"
             height="100vh"
             width="100%"
-            background="#42BFDF"
+            background={bg}
             alignItems="center"
             justifyContent="center"
         >
@@ -77,8 +79,9 @@ export default function Home({ ws }: Props) {
                             placeholder: "Jhon Titor",
                             type: "text",
                             maxlength: 20,
-                            onChange: e => setUsername(e.target.value),
-                            value: username,
+                            onChange: e =>
+                                classroom.set({ username: e.target.value }),
+                            value: classroom.username,
                             autosuggest: "off"
                         }}
                     ></Block>

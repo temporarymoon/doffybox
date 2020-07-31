@@ -18,5 +18,7 @@ type IJoinClassroom = Action<
     { hasJoined: false } | { hasJoined: true; code: string; name: string }
 >
 
-export type WSOngoingActions = OCreateClassroom | OJoinClassroom
+type ODeleteMeme = Action<"deleteMeme", { id: number }>
+
+export type WSOngoingActions = OCreateClassroom | OJoinClassroom | ODeleteMeme
 export type WSIncomingAction = ICreateClassroom | IJoinClassroom
