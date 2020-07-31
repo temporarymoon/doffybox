@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Mateiadrielrafael/doffybox/compare/v1.0.0...v1.1.0) (2020-07-31)
+
+
+### Features
+
+* good looking code input ([0aad25d](https://github.com/Mateiadrielrafael/doffybox/commit/0aad25de57efb8dac530812d7aa2d5081cd5c34e))
+
 # 1.0.0 (2020-07-31)
 
 
