@@ -3,7 +3,6 @@ import { Block, Col, Row } from "jsxstyle"
 import { MdDelete } from "react-icons/md"
 
 type Props = Meme & {
-    username: string
     admin: boolean
     onDelete(): void
 }

@@ -13,27 +13,31 @@ export const handleMessage = (router: NextRouter) => (
         store.set({ currentRoom: action.data, owned: true })
 
         router.push("/classroom/[code]", `/classroom/${action.data.code}`)
-    }
-
-    if (action.type === "joinClassroom") {
+    } else if (action.type === "joinClassroom") {
         if (action.data.hasJoined) {
-            const { name, code } = action.data
+            const { name, code, memes } = action.data
 
             console.log(`Joined classroom ${name}`)
 
-            store.set({ currentRoom: { name, code }, owned: false })
+            store.set({ currentRoom: { name, code }, owned: false, memes })
             router.push("/classroom/[code]", `/classroom/${code}`)
         } else {
             store.set({ currentRoom: null })
             router.push("/", "/")
         }
-    }
-
-    if (action.type === "deletedClassroom") {
+    } else if (action.type === "deletedClassroom") {
         if (!store.currentRoom) return
 
-        store.set({ currentRoom: null, owned: false })
+        store.set({ currentRoom: null, owned: false, memes: [] })
 
         router.push("/", "/")
+    } else if (action.type === "uploadMeme") {
+        store.set({
+            memes: [...store.memes, action.data]
+        })
+    } else if (action.type === "deleteMeme") {
+        store.set({
+            memes: store.memes.filter(({ id }) => id !== action.data.id)
+        })
     }
 }

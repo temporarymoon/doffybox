@@ -1,3 +1,5 @@
+import { Meme } from "./Meme"
+
 type Action<T extends string, A> = {
     type: T
     data: A
@@ -15,15 +17,26 @@ type OJoinClassroom = Action<
 >
 type IJoinClassroom = Action<
     "joinClassroom",
-    { hasJoined: false } | { hasJoined: true; code: string; name: string }
+    | { hasJoined: false }
+    | { hasJoined: true; code: string; name: string; memes: Meme[] }
 >
 
-type ODeleteMeme = Action<"deleteMeme", { id: number }>
+type DeleteMeme = Action<"deleteMeme", { id: number }>
 
 type IDeletedClassroom = Action<"deletedClassroom", {}>
 
-export type WSOngoingActions = OCreateClassroom | OJoinClassroom | ODeleteMeme
+type OUploadMeme = Action<"uploadMeme", { url: string; title: string }>
+
+type IUploadMeme = Action<"uploadMeme", Meme>
+
+export type WSOngoingActions =
+    | OCreateClassroom
+    | OJoinClassroom
+    | DeleteMeme
+    | OUploadMeme
 export type WSIncomingAction =
     | ICreateClassroom
     | IJoinClassroom
     | IDeletedClassroom
+    | DeleteMeme
+    | IUploadMeme
