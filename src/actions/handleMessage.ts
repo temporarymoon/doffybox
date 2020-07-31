@@ -12,7 +12,7 @@ export const handleMessage = (router: NextRouter) => (
 
         store.set({ currentRoom: action.data, owned: true })
 
-        router.replace("/classroom/[code]", `/classroom/${action.data.code}`)
+        router.push("/classroom/[code]", `/classroom/${action.data.code}`)
     }
 
     if (action.type === "joinClassroom") {
@@ -22,10 +22,18 @@ export const handleMessage = (router: NextRouter) => (
             console.log(`Joined classroom ${name}`)
 
             store.set({ currentRoom: { name, code }, owned: false })
-            router.replace("/classroom/[code]", `/classroom/${code}`)
+            router.push("/classroom/[code]", `/classroom/${code}`)
         } else {
             store.set({ currentRoom: null })
-            router.replace("/", "/")
+            router.push("/", "/")
         }
+    }
+
+    if (action.type === "deletedClassroom") {
+        if (!store.currentRoom) return
+
+        store.set({ currentRoom: null, owned: false })
+
+        router.push("/", "/")
     }
 }

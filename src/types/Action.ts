@@ -20,5 +20,10 @@ type IJoinClassroom = Action<
 
 type ODeleteMeme = Action<"deleteMeme", { id: number }>
 
+type IDeletedClassroom = Action<"deletedClassroom", {}>
+
 export type WSOngoingActions = OCreateClassroom | OJoinClassroom | ODeleteMeme
-export type WSIncomingAction = ICreateClassroom | IJoinClassroom
+export type WSIncomingAction =
+    | ICreateClassroom
+    | IJoinClassroom
+    | IDeletedClassroom
