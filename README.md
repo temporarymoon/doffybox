@@ -14,6 +14,8 @@ Project built with:
 -   [react-dropzone](https://react-dropzone.js.org/)
 -   [react-icons](https://react-icons.github.io/react-icons/)
 -   [react-use-clipboard](https://github.com/danoc/react-use-clipboard)
+-   [react-number-format](https://www.npmjs.com/package/react-number-format)
+-   [react-select](https://www.npmjs.com/package/react-switch)
 -   [blocks.css](https://thesephist.github.io/blocks.css/)
 
 ## Developing

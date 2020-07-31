@@ -16,6 +16,7 @@
         "react-dropzone": "^11.0.2",
         "react-icons": "^3.10.0",
         "react-number-format": "^4.4.1",
+        "react-switch": "^5.0.1",
         "react-use-clipboard": "^1.0.0",
         "sass": "^1.26.10",
         "zustand": "^2.2.3"

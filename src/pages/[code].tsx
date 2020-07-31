@@ -2,7 +2,7 @@ import { WsClient } from "../hooks/useWebsocket"
 import { WSOngoingActions } from "../types/Action"
 import { useClassroom } from "../stores/classroom"
 import Home from "."
-import { Row, Col, Block } from "jsxstyle"
+import { Row, Col, Block, Box, Inline } from "jsxstyle"
 import { MemeElement } from "../components/Meme"
 import { bg } from "../constants"
 import { useCallback, useState } from "preact/hooks"
@@ -11,6 +11,7 @@ import "preact/compat"
 import { Metadata } from "../components/Metadata"
 import useClipboard from "react-use-clipboard"
 import { MdContentCopy, MdDone } from "react-icons/md"
+import Switch from "react-switch"
 
 interface Props {
     ws: WsClient<WSOngoingActions> | null
@@ -127,6 +128,48 @@ const UploadMeme = (props: Props) => {
     )
 }
 
+const AdminSettings = (props: Props) => {
+    const room = useClassroom()
+
+    const setLocked = (isLocked: boolean) => {
+        if (!props.ws) return
+
+        props.ws.send({
+            type: "setLocked",
+            data: {
+                isLocked
+            }
+        })
+
+        room.set({ locked: isLocked })
+    }
+
+    return (
+        <Col padding="3rem !important" className="block wrapper">
+            <Block component="h1">Teacher options</Block>
+            <Block width="100%" marginTop="2rem" marginBottom="4rem">
+                <Row
+                    class="block"
+                    display="flex !important"
+                    width="100%"
+                    alignItems="center"
+                    justifyContent="space-evenly"
+                >
+                    <Inline>Locked:</Inline>
+
+                    <Box
+                        component={Switch}
+                        props={{
+                            checked: room.locked,
+                            onChange: setLocked
+                        }}
+                    />
+                </Row>
+            </Block>
+        </Col>
+    )
+}
+
 const Classroom = ({ ws }: Props) => {
     const room = useClassroom()
 
@@ -161,8 +204,9 @@ const Classroom = ({ ws }: Props) => {
                     overflowX="hidden"
                     justifyContent={empty ? "center" : undefined}
                 >
+                    {room.owned && <AdminSettings ws={ws} />}
                     {empty && <InviteOthers code={room.currentRoom.code} />}
-                    {!room.owned && <UploadMeme ws={ws} />}
+                    {!room.owned && !room.locked && <UploadMeme ws={ws} />}
                     {[...room.memes].reverse().map(meme => (
                         <MemeElement
                             {...meme}

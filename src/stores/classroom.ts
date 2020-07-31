@@ -8,6 +8,7 @@ export interface ClassroomStore {
     owned: boolean
     username: string
     set: SetState<ClassroomStore>
+    locked: boolean
     memes: Meme[]
 }
 
@@ -16,5 +17,6 @@ export const [useClassroom, classroomStore] = create<ClassroomStore>(set => ({
     owned: false,
     username: "",
     set,
-    memes: []
+    memes: [],
+    locked: false
 }))
