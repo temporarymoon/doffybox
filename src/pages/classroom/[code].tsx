@@ -8,7 +8,7 @@ import { bg } from "../../constants"
 import { useCallback, useState } from "preact/hooks"
 import { useDropzone } from "react-dropzone"
 import "preact/compat"
-import { WSAEACCES } from "constants"
+import { Metadata } from "../../components/Metadata"
 
 interface Props {
     ws: WsClient<WSOngoingActions> | null
@@ -140,26 +140,32 @@ const Classroom = ({ ws }: Props) => {
     )
 
     return (
-        <Col alignItems="center" background={bg}>
-            <Col
-                maxWidth="800px"
-                height="100vh"
-                overflowY="scroll"
-                overflowX="hidden"
-                justifyContent={empty ? "center" : undefined}
-            >
-                {empty && <InviteOthers code={room.currentRoom.code} />}
-                {!room.owned && <UploadMeme ws={ws} />}
-                {[...room.memes].reverse().map(meme => (
-                    <MemeElement
-                        {...meme}
-                        onDelete={deleteMeme(meme.id)}
-                        key={meme.id}
-                        admin={room.owned}
-                    />
-                ))}
+        <>
+            <Metadata
+                title="Classroom"
+                description="Join classrooms to be able to share your memes with the world!"
+            />
+            <Col alignItems="center" background={bg}>
+                <Col
+                    maxWidth="800px"
+                    height="100vh"
+                    overflowY="scroll"
+                    overflowX="hidden"
+                    justifyContent={empty ? "center" : undefined}
+                >
+                    {empty && <InviteOthers code={room.currentRoom.code} />}
+                    {!room.owned && <UploadMeme ws={ws} />}
+                    {[...room.memes].reverse().map(meme => (
+                        <MemeElement
+                            {...meme}
+                            onDelete={deleteMeme(meme.id)}
+                            key={meme.id}
+                            admin={room.owned}
+                        />
+                    ))}
+                </Col>
             </Col>
-        </Col>
+        </>
     )
 }
 

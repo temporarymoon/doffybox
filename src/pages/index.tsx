@@ -6,6 +6,7 @@ import { WSOngoingActions } from "../types/Action"
 import Link from "next/link"
 import { bg } from "../constants"
 import { useClassroom } from "../stores/classroom"
+import { Metadata } from "../components/Metadata"
 
 const mediaQueries = {
     lg: "screen and (max-width: 1120px)",
@@ -40,136 +41,145 @@ export default function Home({ ws }: Props) {
     }, [code, classroom.username, ws])
 
     return (
-        <Row
-            mediaQueries={mediaQueries}
-            lgFlexDirection="column"
-            height="100vh"
-            width="100%"
-            background={bg}
-            alignItems="center"
-            justifyContent="center"
-        >
-            <Col
-                justifyContent="center"
+        <>
+            <Metadata
+                title="Home"
+                description="Join or create your own classrooms"
+            />
+            <Row
+                mediaQueries={mediaQueries}
+                lgFlexDirection="column"
+                height="100vh"
+                width="100%"
+                background={bg}
                 alignItems="center"
-                class="block wrap"
-                // These 2 overwrite the theme
-                cursor="default !important"
-                padding="2rem !important"
+                justifyContent="center"
             >
-                <Block
-                    component="h1"
-                    fontSize="3rem"
-                    mediaQueries={mediaQueries}
-                    textAlign="center"
-                    smFontSize="2rem"
+                <Col
+                    justifyContent="center"
+                    alignItems="center"
+                    class="block wrap"
+                    // These 2 overwrite the theme
+                    cursor="default !important"
+                    padding="2rem !important"
                 >
-                    Join classroom
-                </Block>
-                <Col>
                     <Block
-                        padding="0.7rem"
-                        fontSize="1.5rem"
-                        component="input"
+                        component="h1"
+                        fontSize="3rem"
+                        mediaQueries={mediaQueries}
                         textAlign="center"
-                        class="block wrap"
-                        width="100%"
-                        props={{
-                            name: "Username",
-                            placeholder: "Jhon Titor",
-                            type: "text",
-                            maxlength: 20,
-                            onChange: e =>
-                                classroom.set({ username: e.target.value }),
-                            value: classroom.username,
-                            autosuggest: "off"
-                        }}
-                    ></Block>
-                    <Block
-                        padding="0.7rem"
-                        fontSize="1.5rem"
-                        component="input"
-                        textAlign="center"
-                        class="block wrap"
-                        width="100%"
-                        props={{
-                            name: "Room id",
-                            placeholder: "000000",
-                            type: "number",
-                            maxlength: 10,
-                            onChange: e => setCode(e.target.value),
-                            value: code
-                        }}
-                    ></Block>
-                    <Link href="/classroom/[code]" as={`/classroom/${code}`}>
-                        <Box
-                            component="a"
-                            class="block accent"
-                            marginTop="2rem !important"
-                            fontSize="2rem"
-                            width="100%"
+                        smFontSize="2rem"
+                    >
+                        Join classroom
+                    </Block>
+                    <Col>
+                        <Block
+                            padding="0.7rem"
+                            fontSize="1.5rem"
+                            component="input"
                             textAlign="center"
-                            props={{ onClick: joinClassroom }}
+                            class="block wrap"
+                            width="100%"
+                            props={{
+                                name: "Username",
+                                placeholder: "Jhon Titor",
+                                type: "text",
+                                maxlength: 20,
+                                onChange: e =>
+                                    classroom.set({ username: e.target.value }),
+                                value: classroom.username,
+                                autosuggest: "off"
+                            }}
+                        ></Block>
+                        <Block
+                            padding="0.7rem"
+                            fontSize="1.5rem"
+                            component="input"
+                            textAlign="center"
+                            class="block wrap"
+                            width="100%"
+                            props={{
+                                name: "Room id",
+                                placeholder: "000000",
+                                type: "number",
+                                maxlength: 10,
+                                onChange: e => setCode(e.target.value),
+                                value: code
+                            }}
+                        ></Block>
+                        <Link
+                            href="/classroom/[code]"
+                            as={`/classroom/${code}`}
                         >
-                            Join
-                        </Box>
-                    </Link>
+                            <Box
+                                component="a"
+                                class="block accent"
+                                marginTop="2rem !important"
+                                fontSize="2rem"
+                                width="100%"
+                                textAlign="center"
+                                props={{ onClick: joinClassroom }}
+                            >
+                                Join
+                            </Box>
+                        </Link>
+                    </Col>
                 </Col>
-            </Col>
 
-            <Block class="block" margin="2rem !important">
-                or
-            </Block>
-            <Col
-                justifyContent="center"
-                alignItems="center"
-                class="block wrap accent"
-                // These 2 overwrite the theme
-                cursor="default !important"
-                padding="2rem !important"
-            >
-                <Block
-                    component="h1"
-                    fontSize="3rem"
-                    mediaQueries={mediaQueries}
-                    textAlign="center"
-                    smFontSize="2rem"
-                >
-                    Create your own
+                <Block class="block" margin="2rem !important">
+                    or
                 </Block>
-                <Col>
+                <Col
+                    justifyContent="center"
+                    alignItems="center"
+                    class="block wrap accent"
+                    // These 2 overwrite the theme
+                    cursor="default !important"
+                    padding="2rem !important"
+                >
                     <Block
-                        padding="0.7rem"
-                        fontSize="1.5rem"
-                        component="input"
+                        component="h1"
+                        fontSize="3rem"
+                        mediaQueries={mediaQueries}
                         textAlign="center"
-                        class="block wrap"
-                        width="100%"
-                        props={{
-                            name: "Room name",
-                            placeholder: "My awesome classroom",
-                            type: "text",
-                            maxlength: 30,
-                            onChange: e => setName(e.target.value),
-                            value: name,
-                            autocomplete: "off"
-                        }}
-                    ></Block>
-                    <Link href="/classroom/[code]" as="/">
-                        <Box
-                            component="a"
-                            class="block"
-                            marginTop="2rem !important"
-                            fontSize="2rem"
-                            width="100%"
+                        smFontSize="2rem"
+                    >
+                        Create your own
+                    </Block>
+                    <Col>
+                        <Block
+                            padding="0.7rem"
+                            fontSize="1.5rem"
+                            component="input"
                             textAlign="center"
-                            props={{ onClick: createClassroom }}
-                        >
-                            Create
-                        </Box>
-                    </Link>
+                            class="block wrap"
+                            width="100%"
+                            props={{
+                                name: "Room name",
+                                placeholder: "My awesome classroom",
+                                type: "text",
+                                maxlength: 30,
+                                onChange: e => setName(e.target.value),
+                                value: name,
+                                autocomplete: "off"
+                            }}
+                        ></Block>
+                        <Link href="/classroom/[code]" as="/">
+                            <Box
+                                component="a"
+                                class="block"
+                                marginTop="2rem !important"
+                                fontSize="2rem"
+                                width="100%"
+                                textAlign="center"
+                                props={{ onClick: createClassroom }}
+                            >
+                                Create
+                            </Box>
+                        </Link>
+                    </Col>
                 </Col>
-            </Col>
-        </Row>
+            </Row>
+        </>
     )
 }
