@@ -121,7 +121,7 @@ const Classroom = ({ ws }: Props) => {
                 overflowX="hidden"
             >
                 {!room.owned && <UploadMeme ws={ws} />}
-                {room.memes.map(meme => (
+                {[...room.memes].reverse().map(meme => (
                     <MemeElement
                         {...meme}
                         onDelete={deleteMeme(meme.id)}

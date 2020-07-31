@@ -19,7 +19,11 @@ export const handleMessage = (router: NextRouter) => (
 
             console.log(`Joined classroom ${name}`)
 
-            store.set({ currentRoom: { name, code }, owned: false, memes })
+            store.set({
+                currentRoom: { name, code },
+                owned: false,
+                memes
+            })
             router.push("/classroom/[code]", `/classroom/${code}`)
         } else {
             store.set({ currentRoom: null })
