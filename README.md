@@ -2,7 +2,10 @@
 
 My project for the open hackathon of infoeducatie 2020
 
-Check out [the api](https://github.com/BlueGhostGH/open20api)
+Check out:
+
+-   [The api](https://github.com/BlueGhostGH/open20api)
+-   [The beta](https://doffybox.herokuapp.com/)
 
 Project built with:
 
