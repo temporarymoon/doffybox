@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/Mateiadrielrafael/doffybox/compare/v1.1.0...v1.2.0) (2020-07-31)
+
+
+### Bug Fixes
+
+* locking rooms is not broken now ([3776a57](https://github.com/Mateiadrielrafael/doffybox/commit/3776a5718cf49ed1e0f30c60dbcf87f72da19228))
+
+
+### Features
+
+* locked rooms ([44beaba](https://github.com/Mateiadrielrafael/doffybox/commit/44beabab991fadbc03dd19ea8122ac80bf2694c0))
+
 # [1.1.0](https://github.com/Mateiadrielrafael/doffybox/compare/v1.0.0...v1.1.0) (2020-07-31)
 
 
