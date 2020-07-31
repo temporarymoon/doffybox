@@ -50,3 +50,13 @@ yarn start
 ## The ci / cd pipeline
 
 On every push the project is checked to build successfully. Pushes to master create and deploy a new release (the heroku).
+
+## Screenshots:
+
+![home page](https://cdn.discordapp.com/attachments/672889285438865453/738711948253986837/unknown.png)
+
+![locking](https://cdn.discordapp.com/attachments/672889285438865453/738712174784020510/unknown.png)
+
+![ss](https://cdn.discordapp.com/attachments/672889285438865453/738712444742139984/unknown.png)
+
+![ss2](https://media.discordapp.net/attachments/672889285438865453/738712487062536234/unknown.png?width=1418&height=683)
