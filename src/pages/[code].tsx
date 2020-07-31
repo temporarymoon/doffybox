@@ -2,7 +2,7 @@ import { WsClient } from "../hooks/useWebsocket"
 import { WSOngoingActions } from "../types/Action"
 import { useClassroom } from "../stores/classroom"
 import Home from "."
-import { Box, Grid, Row, Col, Block } from "jsxstyle"
+import { Row, Col, Block } from "jsxstyle"
 import { MemeElement } from "../components/Meme"
 import { bg } from "../constants"
 import { useCallback, useState } from "preact/hooks"
@@ -20,7 +20,7 @@ const InviteOthers = ({ code }: { code: string }) => {
     const [isCopied, copy] = useClipboard(code)
 
     return (
-        <Col alignItems="center" class="block">
+        <Col alignItems="center" className="block">
             <Block>
                 Invite your students to join this classroom by using the code:
             </Block>
@@ -90,7 +90,7 @@ const UploadMeme = (props: Props) => {
     return loading ? (
         <p className="block accent">Loading...</p>
     ) : (
-        <Col padding="3rem !important" class="block wrapper">
+        <Col padding="3rem !important" className="block wrapper">
             <Block component="h1">Create meme</Block>
             <Block width="100%" marginTop="2rem" marginBottom="4rem">
                 <Block
@@ -99,12 +99,12 @@ const UploadMeme = (props: Props) => {
                     padding="0.7rem"
                     fontSize="1.5rem"
                     textAlign="center"
-                    class="block wrap"
+                    className="block wrap"
                     props={{
                         name: "Meme title",
                         placeholder: "An interesting title",
                         type: "text",
-                        maxlength: 20,
+                        maxLength: 20,
                         onChange: e => setTitle(e.target.value),
                         value: title
                     }}
@@ -112,7 +112,7 @@ const UploadMeme = (props: Props) => {
             </Block>
             <Row
                 width="100%"
-                class="block accent"
+                className="block accent"
                 padding="2rem"
                 height="4rem"
                 props={{ ...getRootProps() }}
