@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap");
 
 html,
 body {
@@ -15,7 +15,12 @@ a {
 
 * {
     box-sizing: border-box;
+    font-weight: 600;
     font-family: "Montserrat", sans-serif;
+}
+
+strong {
+    font-weight: 900;
 }
 
 ::-webkit-input-placeholder {

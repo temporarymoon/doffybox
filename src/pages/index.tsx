@@ -17,6 +17,7 @@ interface Props {
 export default function Home({ ws }: Props) {
     const [code, setCode] = useState("")
     const [name, setName] = useState("")
+    const [username, setUsername] = useState("")
 
     const createClassroom = useCallback(() => {
         if (!ws) return
@@ -32,9 +33,9 @@ export default function Home({ ws }: Props) {
 
         ws.send({
             type: "joinClassroom",
-            data: { code }
+            data: { code, username }
         })
-    }, [code, ws])
+    }, [code, username, ws])
 
     return (
         <Row
@@ -72,6 +73,23 @@ export default function Home({ ws }: Props) {
                         class="block wrap"
                         width="100%"
                         props={{
+                            name: "Username",
+                            placeholder: "Jhon Titor",
+                            type: "text",
+                            maxlength: 20,
+                            onChange: e => setUsername(e.target.value),
+                            value: username,
+                            autosuggest: "off"
+                        }}
+                    ></Block>
+                    <Block
+                        padding="0.7rem"
+                        fontSize="1.5rem"
+                        component="input"
+                        textAlign="center"
+                        class="block wrap"
+                        width="100%"
+                        props={{
                             name: "Room id",
                             placeholder: "000000",
                             type: "number",
@@ -87,6 +105,7 @@ export default function Home({ ws }: Props) {
                             marginTop="2rem !important"
                             fontSize="2rem"
                             width="100%"
+                            textAlign="center"
                             props={{ onClick: joinClassroom }}
                         >
                             Join
@@ -129,7 +148,8 @@ export default function Home({ ws }: Props) {
                             type: "text",
                             maxlength: 30,
                             onChange: e => setName(e.target.value),
-                            value: name
+                            value: name,
+                            autocomplete: "off"
                         }}
                     ></Block>
                     <Link href="/classroom/[code]" as="/">
@@ -139,6 +159,7 @@ export default function Home({ ws }: Props) {
                             marginTop="2rem !important"
                             fontSize="2rem"
                             width="100%"
+                            textAlign="center"
                             props={{ onClick: createClassroom }}
                         >
                             Create

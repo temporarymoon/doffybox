@@ -9,7 +9,10 @@ type ICreateClassroom = Action<
     { code: string; name: string }
 >
 
-type OJoinClassroom = Action<"joinClassroom", { code: string }>
+type OJoinClassroom = Action<
+    "joinClassroom",
+    { code: string; username: string }
+>
 type IJoinClassroom = Action<
     "joinClassroom",
     { hasJoined: false } | { hasJoined: true; code: string; name: string }
