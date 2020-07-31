@@ -17,3 +17,25 @@ a {
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}
+
+* {
+    --block-accent-color: #f57c44;
+}
