@@ -3,6 +3,11 @@ type Action<T extends string, A> = {
     data: A
 }
 
-type CreateConnection = Action<"createConnection", string>
+type OCreateClassroom = Action<"createClassroom", { name: string }>
+type ICreateClassroom = Action<
+    "createClassroom",
+    { code: string; name: string }
+>
 
-export type WSActions = CreateConnection
+export type WSOngoingActions = OCreateClassroom
+export type WSIncomingAction = ICreateClassroom

@@ -1,14 +1,31 @@
 import "preact/compat"
 import { Col, Block, Box, Row, Grid } from "jsxstyle"
 import { useState } from "preact/hooks"
+import { WsClient } from "../hooks/useWebsocket"
+import { WSOngoingActions } from "../types/Action"
+import Link from "next/link"
 
 const mediaQueries = {
     lg: "screen and (max-width: 1120px)",
     sm: "screen and (max-width: 545px)"
 }
 
-export default function Home() {
+interface Props {
+    ws: WsClient<WSOngoingActions> | null
+}
+
+export default function Home({ ws }: Props) {
     const [code, setCode] = useState("")
+    const [name, setName] = useState("")
+
+    const createClassroom = () => {
+        if (!ws) return
+
+        ws.send({
+            type: "createClassroom",
+            data: { name }
+        })
+    }
 
     return (
         <Row
@@ -42,6 +59,7 @@ export default function Home() {
                         padding="0.7rem"
                         fontSize="1.5rem"
                         component="input"
+                        textAlign="center"
                         class="block wrap"
                         width="100%"
                         props={{
@@ -90,6 +108,7 @@ export default function Home() {
                         padding="0.7rem"
                         fontSize="1.5rem"
                         component="input"
+                        textAlign="center"
                         class="block wrap"
                         width="100%"
                         props={{
@@ -97,19 +116,22 @@ export default function Home() {
                             placeholder: "My awesome classroom",
                             type: "text",
                             maxlength: 30,
-                            onChange: e => setCode(e.target.value),
-                            value: code
+                            onChange: e => setName(e.target.value),
+                            value: name
                         }}
                     ></Block>
-                    <Box
-                        component="button"
-                        class="block "
-                        marginTop="2rem !important"
-                        fontSize="2rem"
-                        width="100%"
-                    >
-                        Create
-                    </Box>
+                    <Link href="/classroom/[code]" as={`/classroom/0`}>
+                        <Box
+                            component="a"
+                            class="block"
+                            marginTop="2rem !important"
+                            fontSize="2rem"
+                            width="100%"
+                            props={{ onClick: createClassroom }}
+                        >
+                            Create
+                        </Box>
+                    </Link>
                 </Col>
             </Col>
         </Row>
