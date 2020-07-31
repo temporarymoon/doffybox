@@ -1,6 +1,6 @@
 import "preact/compat"
 import { Col, Block, Box, Row, Grid } from "jsxstyle"
-import { useState } from "preact/hooks"
+import { useState, useCallback } from "preact/hooks"
 import { WsClient } from "../hooks/useWebsocket"
 import { WSOngoingActions } from "../types/Action"
 import Link from "next/link"
@@ -18,14 +18,23 @@ export default function Home({ ws }: Props) {
     const [code, setCode] = useState("")
     const [name, setName] = useState("")
 
-    const createClassroom = () => {
+    const createClassroom = useCallback(() => {
         if (!ws) return
 
         ws.send({
             type: "createClassroom",
             data: { name }
         })
-    }
+    }, [name, ws])
+
+    const joinClassroom = useCallback(() => {
+        if (!ws) return
+
+        ws.send({
+            type: "joinClassroom",
+            data: { code }
+        })
+    }, [code, ws])
 
     return (
         <Row
@@ -71,15 +80,18 @@ export default function Home({ ws }: Props) {
                             value: code
                         }}
                     ></Block>
-                    <Box
-                        component="button"
-                        class="block accent"
-                        marginTop="2rem !important"
-                        fontSize="2rem"
-                        width="100%"
-                    >
-                        Join
-                    </Box>
+                    <Link href="/classroom/[code]" as={`/classroom/${code}`}>
+                        <Box
+                            component="a"
+                            class="block accent"
+                            marginTop="2rem !important"
+                            fontSize="2rem"
+                            width="100%"
+                            props={{ onClick: joinClassroom }}
+                        >
+                            Join
+                        </Box>
+                    </Link>
                 </Col>
             </Col>
 
@@ -120,7 +132,7 @@ export default function Home({ ws }: Props) {
                             value: name
                         }}
                     ></Block>
-                    <Link href="/classroom/[code]" as={`/classroom/0`}>
+                    <Link href="/classroom/[code]" as="/">
                         <Box
                             component="a"
                             class="block"

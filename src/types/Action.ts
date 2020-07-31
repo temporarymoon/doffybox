@@ -9,5 +9,11 @@ type ICreateClassroom = Action<
     { code: string; name: string }
 >
 
-export type WSOngoingActions = OCreateClassroom
-export type WSIncomingAction = ICreateClassroom
+type OJoinClassroom = Action<"joinClassroom", { code: string }>
+type IJoinClassroom = Action<
+    "joinClassroom",
+    { hasJoined: false } | { hasJoined: true; code: string; name: string }
+>
+
+export type WSOngoingActions = OCreateClassroom | OJoinClassroom
+export type WSIncomingAction = ICreateClassroom | IJoinClassroom
