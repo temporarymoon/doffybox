@@ -14,6 +14,31 @@ interface Props {
     ws: WsClient<WSOngoingActions> | null
 }
 
+const InviteOthers = ({ code }: { code: string }) => {
+    return (
+        <Block class="block">
+            Invite your students to join this classroom by using the code:
+            <Block
+                component="strong"
+                marginTop="1rem"
+                fontSize="2rem"
+                textAlign="center"
+            >
+                {
+                    <Box
+                        component="span"
+                        background="rgb(230,230,230)"
+                        borderRadius={4}
+                        padding="0.2rem"
+                    >
+                        {code}
+                    </Box>
+                }
+            </Block>
+        </Block>
+    )
+}
+
 const UploadMeme = (props: Props) => {
     const onDrop = (files: FileList) => {
         if (files.length === 0) return
@@ -101,6 +126,8 @@ const Classroom = ({ ws }: Props) => {
         return <Home ws={ws} />
     }
 
+    const empty = room.owned && room.memes.length === 0
+
     const deleteMeme = useCallback(
         (id: number) => () => {
             if (!ws) return
@@ -119,7 +146,9 @@ const Classroom = ({ ws }: Props) => {
                 height="100vh"
                 overflowY="scroll"
                 overflowX="hidden"
+                justifyContent={empty ? "center" : undefined}
             >
+                {empty && <InviteOthers code={room.currentRoom.code} />}
                 {!room.owned && <UploadMeme ws={ws} />}
                 {[...room.memes].reverse().map(meme => (
                     <MemeElement
