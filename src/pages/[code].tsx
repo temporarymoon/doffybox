@@ -1,14 +1,14 @@
-import { WsClient } from "../../hooks/useWebsocket"
-import { WSOngoingActions } from "../../types/Action"
-import { useClassroom } from "../../stores/classroom"
-import Home from ".."
+import { WsClient } from "../hooks/useWebsocket"
+import { WSOngoingActions } from "../types/Action"
+import { useClassroom } from "../stores/classroom"
+import Home from "."
 import { Box, Grid, Row, Col, Block } from "jsxstyle"
-import { MemeElement } from "../../components/Meme"
-import { bg } from "../../constants"
+import { MemeElement } from "../components/Meme"
+import { bg } from "../constants"
 import { useCallback, useState } from "preact/hooks"
 import { useDropzone } from "react-dropzone"
 import "preact/compat"
-import { Metadata } from "../../components/Metadata"
+import { Metadata } from "../components/Metadata"
 
 interface Props {
     ws: WsClient<WSOngoingActions> | null

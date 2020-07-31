@@ -12,7 +12,7 @@ export const handleMessage = (router: NextRouter) => (
 
         store.set({ currentRoom: action.data, owned: true })
 
-        router.push("/classroom/[code]", `/classroom/${action.data.code}`)
+        router.push("/[code]", `/${action.data.code}`)
     } else if (action.type === "joinClassroom") {
         if (action.data.hasJoined) {
             const { name, code, memes } = action.data
@@ -24,7 +24,7 @@ export const handleMessage = (router: NextRouter) => (
                 owned: false,
                 memes
             })
-            router.push("/classroom/[code]", `/classroom/${code}`)
+            router.push("/[code]", `/${code}`)
         } else {
             store.set({ currentRoom: null })
             router.push("/", "/")

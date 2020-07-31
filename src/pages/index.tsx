@@ -107,10 +107,7 @@ export default function Home({ ws }: Props) {
                                 value: code
                             }}
                         ></Block>
-                        <Link
-                            href="/classroom/[code]"
-                            as={`/classroom/${code}`}
-                        >
+                        <Link href="/[code]" as={`/${code}`}>
                             <Box
                                 component="a"
                                 class="block accent"
@@ -164,7 +161,7 @@ export default function Home({ ws }: Props) {
                                 autocomplete: "off"
                             }}
                         ></Block>
-                        <Link href="/classroom/[code]" as="/">
+                        <Link href="/[code]" as="/">
                             <Box
                                 component="a"
                                 class="block"
