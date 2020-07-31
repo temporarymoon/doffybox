@@ -128,6 +128,14 @@ const UploadMeme = (props: Props) => {
     )
 }
 
+const RoomLocked = () => {
+    return (
+        <Block class="block accent">
+            This room is currently locked by your teacher.{" "}
+        </Block>
+    )
+}
+
 const AdminSettings = (props: Props) => {
     const room = useClassroom()
 
@@ -206,7 +214,8 @@ const Classroom = ({ ws }: Props) => {
                 >
                     {room.owned && <AdminSettings ws={ws} />}
                     {empty && <InviteOthers code={room.currentRoom.code} />}
-                    {!room.owned && !room.locked && <UploadMeme ws={ws} />}
+                    {!room.owned &&
+                        (room.locked ? <RoomLocked /> : <UploadMeme ws={ws} />)}
                     {[...room.memes].reverse().map(meme => (
                         <MemeElement
                             {...meme}
