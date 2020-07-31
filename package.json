@@ -19,6 +19,7 @@
         "react-hook-form": "^6.2.0",
         "react-icons": "^3.10.0",
         "react-switch": "^5.0.1",
+        "react-use-clipboard": "^1.0.0",
         "sass": "^1.26.10",
         "zustand": "^2.2.3"
     },

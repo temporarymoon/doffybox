@@ -9,33 +9,41 @@ import { useCallback, useState } from "preact/hooks"
 import { useDropzone } from "react-dropzone"
 import "preact/compat"
 import { Metadata } from "../components/Metadata"
+import useClipboard from "react-use-clipboard"
+import { MdContentCopy, MdDone } from "react-icons/md"
 
 interface Props {
     ws: WsClient<WSOngoingActions> | null
 }
 
 const InviteOthers = ({ code }: { code: string }) => {
+    const [isCopied, copy] = useClipboard(code)
+
     return (
-        <Block class="block">
-            Invite your students to join this classroom by using the code:
+        <Col alignItems="center" class="block">
+            <Block>
+                Invite your students to join this classroom by using the code:
+            </Block>
             <Block
                 component="strong"
                 marginTop="1rem"
                 fontSize="2rem"
                 textAlign="center"
+                props={{ onClick: copy }}
             >
-                {
-                    <Box
-                        component="span"
-                        background="rgb(230,230,230)"
-                        borderRadius={4}
-                        padding="0.2rem"
-                    >
-                        {code}
-                    </Box>
-                }
+                <Row
+                    background="rgb(230,230,230)"
+                    borderRadius={4}
+                    padding="0.5rem"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    {isCopied ? <MdDone /> : <MdContentCopy />}
+
+                    <span>{code}</span>
+                </Row>
             </Block>
-        </Block>
+        </Col>
     )
 }
 
