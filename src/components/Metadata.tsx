@@ -17,7 +17,7 @@ export const Metadata = ({ title, description }: Props) => {
             <meta property="og:description" content={description} />
             <meta name="theme-color" content="#f57c44" />
             <meta property="og:image" content="/favicon.ico" />
-            <meta property="og:url" content="https://doffybox.netlify.app/" />
+            <meta property="og:url" content="https://doffybox.herokuapp.com/" />
             <link rel="shortcut icon" type="image/png" href="/favicon.png" />
         </Head>
     )
