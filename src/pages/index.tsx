@@ -7,6 +7,7 @@ import Link from "next/link"
 import { bg } from "../constants"
 import { useClassroom } from "../stores/classroom"
 import { Metadata } from "../components/Metadata"
+import NumberFormat from "react-number-format"
 
 const mediaQueries = {
     lg: "screen and (max-width: 1120px)",
@@ -34,9 +35,11 @@ export default function Home({ ws }: Props) {
     const joinClassroom = useCallback(() => {
         if (!ws) return
 
+        const unformatted = code.split(" ").join("")
+
         ws.send({
             type: "joinClassroom",
-            data: { code, username: classroom.username }
+            data: { code: unformatted, username: classroom.username }
         })
     }, [code, classroom.username, ws])
 
@@ -88,23 +91,26 @@ export default function Home({ ws }: Props) {
                                 onChange: e =>
                                     classroom.set({ username: e.target.value }),
                                 value: classroom.username,
-                                autosuggest: "off"
+                                autocomplete: "off"
                             }}
                         ></Block>
                         <Block
                             padding="0.7rem"
                             fontSize="1.5rem"
-                            component="input"
+                            component={NumberFormat}
                             textAlign="center"
                             class="block wrap"
                             width="100%"
                             props={{
                                 name: "Room id",
-                                placeholder: "000000",
-                                type: "number",
-                                maxlength: 10,
-                                onChange: e => setCode(e.target.value),
-                                value: code
+                                placeholder: "Room code",
+                                onValueChange: e => {
+                                    return setCode(e.formattedValue)
+                                },
+                                value: code,
+                                isNumericalString: true,
+                                format: "# # # # # #",
+                                mask: "_"
                             }}
                         ></Block>
                         <Link href="/[code]" as={`/${code}`}>
