@@ -5,9 +5,14 @@ import { classroomStore } from "../stores/classroom"
 export const handleMessage = (router: NextRouter) => (
     action: WSIncomingAction
 ) => {
+    const store = classroomStore.getState()
+
     if (action.type === "createClassroom") {
         console.log(`Created classroom ${action.data.name}`)
-        classroomStore.getState().setRoom(action.data)
+
+        store.setRoom(action.data)
+        store.own()
+
         router.replace("/classroom/[code]", `/classroom/${action.data.code}`)
     }
 }

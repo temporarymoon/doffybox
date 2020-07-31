@@ -15,7 +15,7 @@ const Classroom = ({ ws }: Props) => {
         return <Home ws={ws} />
     }
 
-    return "yohohooh"
+    return room.owned ? "owner" : "not owner"
 }
 
 export default Classroom

@@ -4,10 +4,16 @@ export type Classroom = { code: string; name: string }
 
 export interface ClassroomStore {
     currentRoom: Classroom | null
-    setRoom: (v: Classroom) => void
+    owned: boolean
+    setRoom(v: Classroom): void
+    own(): void
 }
 
 export const [useClassroom, classroomStore] = create<ClassroomStore>(set => ({
     currentRoom: null,
-    setRoom: r => set({ currentRoom: r })
+    owned: false,
+    setRoom: r => set({ currentRoom: r }),
+    own() {
+        set({ owned: true })
+    }
 }))
